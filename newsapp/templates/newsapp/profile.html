@@ -1,0 +1,9 @@
+{% extends "newsapp/base.html" %}
+
+{% block title %}Мой профиль{% endblock %}
+
+{% block content %}
+<h1>Мой профиль</h1>
+<p>Имя пользователя: {{ user.username }}</p>
+<p>Email: {{ user.email }}</p>
+{% endblock %}

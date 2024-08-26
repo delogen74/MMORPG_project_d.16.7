@@ -1,0 +1,47 @@
+{% extends "newsapp/base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link {% if request.path == '/ads/' %}active{% endif %}" href="{% url 'ad_list' %}">Все объявления</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if request.path == '/my_ads/' %}active{% endif %}" href="{% url 'my_ads' %}">Мои объявления</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if request.path == '/my_responses/' %}active{% endif %}" href="{% url 'my_responses' %}">Отклики</a>
+        </li>
+    </ul>
+</div>
+
+<div class="container mt-4">
+    <h1>Все объявления</h1>
+
+    <!-- Кнопка создания объявления -->
+    <a href="{% url 'ad_create' %}" class="btn btn-success mb-3">Создать объявление</a>
+
+    <!-- Форма фильтрации -->
+    <form method="get" class="form-inline mb-3">
+        {{ filter_form.as_p }}
+        <button type="submit" class="btn btn-primary">Фильтровать</button>
+    </form>
+
+    <!-- Список объявлений -->
+    {% for ad in ads %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">{{ ad.title }}</h5>
+            <p class="card-text">{{ ad.content }}</p>
+            <a href="{% url 'ad_detail' pk=ad.pk %}" class="btn btn-primary">Подробнее</a>
+            {% if user.is_authenticated and ad.author == user %}
+            <a href="{% url 'ad_edit' pk=ad.pk %}" class="btn btn-secondary">Редактировать</a>
+            <a href="{% url 'ad_delete' pk=ad.pk %}" class="btn btn-danger">Удалить</a>
+            {% endif %}
+        </div>
+    </div>
+    {% empty %}
+    <p>Нет объявлений, соответствующих вашему запросу.</p>
+    {% endfor %}
+</div>
+{% endblock %}

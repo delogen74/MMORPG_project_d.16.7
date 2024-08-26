@@ -1,0 +1,86 @@
+/* Основные стили */
+body {
+    background-color: #1c1c1c;
+    color: #eaeaea;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Навигация */
+.navbar {
+    background-color: #2a2a2a;
+    border-bottom: 2px solid #d4af37;
+}
+
+.navbar-brand {
+    color: #d4af37;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.navbar-nav .nav-link {
+    color: #eaeaea;
+    padding: 10px;
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: #3a3a3a;
+    color: #d4af37;
+}
+
+/* Кнопки */
+.btn {
+    background-color: #d4af37;
+    color: #1c1c1c;
+    border: none;
+}
+
+.btn:hover {
+    background-color: #b8892d;
+    color: #ffffff;
+}
+
+/* Заголовки */
+h1, h2, h3, h4, h5, h6 {
+    color: #d4af37;
+    font-family: 'Impact', sans-serif;
+    text-transform: uppercase;
+}
+
+/* Фон для карточек */
+.card {
+    background-color: #2a2a2a;
+    border: none;
+    border-radius: 5px;
+    color: #eaeaea;
+}
+
+.card-header {
+    background-color: #3a3a3a;
+    border-bottom: 2px solid #d4af37;
+}
+
+/* Подвал */
+footer {
+    background-color: #1c1c1c;
+    color: #eaeaea;
+    text-align: center;
+    padding: 20px;
+    border-top: 2px solid #d4af37;
+}
+
+.nav-tabs .nav-link {
+    color: #ffc107;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: #ffc107;
+    color: #fff;
+    border-color: #ffc107;
+}
+
+.nav-tabs .nav-link:hover {
+    background-color: #ffe08a;
+    color: #fff;
+}

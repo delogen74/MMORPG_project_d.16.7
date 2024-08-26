@@ -1,0 +1,14 @@
+{% extends "newsapp/base.html" %}
+
+{% block title %}Результаты поиска{% endblock %}
+
+{% block content %}
+<h1>Результаты поиска для "{{ query }}"</h1>
+<ul>
+    {% for result in results %}
+    <li>
+        <a href="{% url 'ad_detail' result.pk %}">{{ result.title }}</a> - {{ result.created_at }}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

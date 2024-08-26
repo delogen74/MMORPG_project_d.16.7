@@ -1,0 +1,41 @@
+{% extends "newsapp/base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link {% if request.path == '/ads/' %}active{% endif %}" href="{% url 'ad_list' %}">Все объявления</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if request.path == '/ads/my/' %}active{% endif %}" href="{% url 'my_ads' %}">Мои объявления</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% if request.path == '/ads/responses/' %}active{% endif %}" href="{% url 'my_responses' %}">Отклики</a>
+        </li>
+    </ul>
+</div>
+
+<!-- Форма фильтрации -->
+<form method="get" class="form-inline mb-3">
+    {{ filter_form.as_p }}
+    <button type="submit" class="btn btn-primary">Фильтровать</button>
+</form>
+
+<!-- Список откликов -->
+<ul class="list-unstyled">
+    {% for response in responses %}
+        <li class="p-3 mb-3" style="background-color: #2a2a2a; border-radius: 8px;">
+            <strong style="color: #ffd700;">Объявление: {{ response.ad.title }}</strong><br>
+            <small style="color: #cccccc;">Дата: {{ response.created_at|date:"d M Y H:i" }}</small><br>
+            <p style="color: #ffffff; font-family: 'Your Font', sans-serif;">Текст: {{ response.content }}</p>
+            <small style="color: #cccccc;">Автор: {{ response.author.username }}</small><br>
+            <a href="{% url 'ad_detail' pk=response.ad.pk %}" class="btn btn-info btn-sm mt-2">Перейти</a>
+            <a href="{% url 'delete_response' pk=response.id %}" class="btn btn-danger btn-sm mt-2">Удалить</a>
+        </li>
+    {% endfor %}
+</ul>
+</div>
+{% endblock %}
+
+
+

@@ -1,0 +1,31 @@
+{% extends "newsapp/base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Отклики на мои объявления</h1>
+    <form method="GET" action="{% url 'responses_to_my_ads' %}">
+        <select name="ad" class="form-control mb-3">
+            <option value="">Все объявления</option>
+            {% for ad in ads %}
+            <option value="{{ ad.id }}" {% if request.GET.ad == ad.id %}selected{% endif %}>
+                {{ ad.title }}
+            </option>
+            {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-primary">Фильтровать</button>
+    </form>
+    {% for response in responses %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">На объявление: {{ response.ad.title }}</h5>
+            <p class="card-text">{{ response.content }}</p>
+            <p><strong>Дата:</strong> {{ response.created_at }}</p>
+            {% if not response.accepted %}
+                <a href="{% url 'accept_response' pk=response.id %}" class="btn btn-success btn-sm">Принять</a>
+            {% endif %}
+                <a href="{% url 'delete_response' pk=response.id %}" class="btn btn-danger btn-sm">Удалить</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

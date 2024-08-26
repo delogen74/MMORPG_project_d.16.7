@@ -1,0 +1,18 @@
+{% extends "newsapp/base.html" %}
+
+{% block content %}
+<h1>Новости</h1>
+<a href="{% url 'manage_subscription' %}" class="btn btn-primary">Рассылка новостей</a>
+
+<ul>
+    {% for item in news %}
+    <li>
+        <h2><a href="{% url 'news_detail' item.pk %}">{{ item.title }}</a></h2>
+        <p>{{ item.content|truncatechars:225 }}</p>
+        <p>Категория: {{ item.category.name }}</p>
+        <p>Дата: {{ item.created_at|date:"d F Y H:i" }}</p>
+        <p>Автор: {{ item.author.username }}</p>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

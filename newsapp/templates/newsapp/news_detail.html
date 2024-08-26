@@ -1,0 +1,19 @@
+{% extends "newsapp/base.html" %}
+
+{% block title %}{{ news_item.title }}{% endblock %}
+
+{% block content %}
+<h1>{{ news_item.title }}</h1>
+<p><em>Опубликовано: {{ news_item.created_at }}</em></p>
+<p>{{ news_item.content }}</p>
+
+{% if news_item.images %}
+    <img src="{{ news_item.images.url }}" alt="{{ news_item.title }}">
+{% endif %}
+
+{% if news_item.videos %}
+    <p><a href="{{ news_item.videos }}" target="_blank">Смотреть видео</a></p>
+{% endif %}
+
+<a href="{% url 'news_list' %}">Вернуться к списку новостей</a>
+{% endblock %}
